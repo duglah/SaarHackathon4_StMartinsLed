@@ -8,7 +8,7 @@
 #define RSSI_DEVICE_ABSENT -1000
 #define PROXIMITY_TIME_FRAME 1500  // In millis
 
-// stores last time device received ble signal and signal strength from device with service uuid
+// stores last time device received ble signal and signal strength from device with the specified service uuid
 struct BleTime {
   private:
   std::mutex mutex;
@@ -33,6 +33,7 @@ struct BleTime {
     }
 } bleTime;
 
+// Callback function of the bluetooth thread. Gets called with the results of every device search .
 std::function<void(std::vector<BLEAdvertisedDevice>)> handleBleDevices = [&](std::vector<BLEAdvertisedDevice> v) {
   int maxDeviceRssi = RSSI_DEVICE_ABSENT;
 
@@ -50,7 +51,7 @@ std::function<void(std::vector<BLEAdvertisedDevice>)> handleBleDevices = [&](std
   }
 };
 
-
+// Gets called once at boot time
 void setup() {
   Serial.begin(9600);
   Serial.println("Starting BLE work!");
@@ -61,6 +62,7 @@ void setup() {
 }
 
 
+// Gets automatically called every tick
 void loop() {
   bool deviceIsClose = millis() - bleTime.getTime() < PROXIMITY_TIME_FRAME;
   LED::loop(deviceIsClose, bleTime.getMaxRssi());
