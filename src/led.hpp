@@ -11,7 +11,7 @@ enum class DISTANCE {
     AWAY
 } lastDeviceDistance;
 
-const int RSSI_THRESHOLD_CLOSE  = -100;
+const int RSSI_THRESHOLD_CLOSE  = -80;
 const int RSSI_THRESHOLD_VERY_CLOSE = -55;
 
     WS2812FX ws2812fx = WS2812FX(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
@@ -89,6 +89,7 @@ const int RSSI_THRESHOLD_VERY_CLOSE = -55;
             {
                 if (lastDeviceDistance != DISTANCE::AWAY)
                     farAway();
+                    lastDeviceDistance = DISTANCE::AWAY;
             }
         };
 
