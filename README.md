@@ -109,5 +109,5 @@ Um so kleiner die Werte, um so weiter entfernt sind die Lampen.
 Bitte beachten, dass z.B. Gegenstände, Menschen, etc. zwischen den Lampen das Signal auch dämpfen kann.
 
 # Nur eine Laterne?
-Wir empfehlen https://github.com/FastLED/FastLED zu installieren.
+Wir empfehlen [https://github.com/Aircoookie/WLED](https://github.com/Aircoookie/WLED) zu installieren.
 Hier öffnet des ESP32 ein Wlan und kann darüber gesteuert werden!
